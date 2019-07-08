@@ -12,17 +12,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
-//import com.training.pom.LoginPOM;
-import com.training.pom.BlogContactFormPOM;
+import com.training.pom.PlotsContactFormPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class RETC10 {
+public class RETC37_Medium {
 
 	private WebDriver driver;
 	private String baseUrl;
-	//private LoginPOM loginPOM;
-	private BlogContactFormPOM newBlogContactFormPOM;
+	private PlotsContactFormPOM newPlotsContactFormPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -37,7 +35,7 @@ public class RETC10 {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		//loginPOM = new LoginPOM(driver);
-		newBlogContactFormPOM= new BlogContactFormPOM(driver);
+		newPlotsContactFormPOM= new PlotsContactFormPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -50,23 +48,22 @@ public class RETC10 {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() {
-		//loginPOM.sendUserName("amalamallavarapu@gmail.com");
-		//loginPOM.sendPassword("summer@123");
-		//loginPOM.clickLoginBtn(); 
+	public void validLoginTest() throws InterruptedException {
 		
-		
-		//screenShot.captureScreenShot("MyProfile");
-		newBlogContactFormPOM.clickblog();
-		newBlogContactFormPOM.clickdropusaline();
-		newBlogContactFormPOM.sendname("manzoor");
-		newBlogContactFormPOM.sendemail("manzoor@gmail.com");
-		newBlogContactFormPOM.sendsubject("Apartments");
-		newBlogContactFormPOM.sendmessage("Looking For Apartments");
-		newBlogContactFormPOM.clicksend();
+		newPlotsContactFormPOM.clickplots();
+		newPlotsContactFormPOM.sendenteraddress("Nullam hendrerit apartment");
+		newPlotsContactFormPOM.selectpropertytype();
+		newPlotsContactFormPOM.selectanyregion();
+		newPlotsContactFormPOM.clicksearch();
+		newPlotsContactFormPOM.clickdropusaline();
+		newPlotsContactFormPOM.sendname("selenium");
+		newPlotsContactFormPOM.sendemail("selenium@gmail.com");
+		newPlotsContactFormPOM.sendsubject("apartment");
+		newPlotsContactFormPOM.sendemessage("looking for apartment");
+		newPlotsContactFormPOM.clicksend();
 		String Expected="Thank you for your message. It has been sent.";
-		String Actual=newBlogContactFormPOM.getcontactformsearchmsg();
-		screenShot.captureScreenShot("Search");
+		String Actual=newPlotsContactFormPOM.getcontactformsearchmsg();
+		screenShot.captureScreenShot("message_display");
 		
 		System.out.println(Expected);
 		System.out.println(Actual);

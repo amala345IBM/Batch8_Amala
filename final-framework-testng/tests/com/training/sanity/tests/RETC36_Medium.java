@@ -12,17 +12,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
-//import com.training.pom.LoginPOM;
-import com.training.pom.BlogContactFormPOM;
+import com.training.pom.NewLaunchSearchPOM;
+import com.training.pom.VillasContactFormPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class RETC10 {
+public class RETC36_Medium {
 
 	private WebDriver driver;
 	private String baseUrl;
-	//private LoginPOM loginPOM;
-	private BlogContactFormPOM newBlogContactFormPOM;
+	private NewLaunchSearchPOM newlaunchsearchPOM;
+	private VillasContactFormPOM newVillasContactFormPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -37,7 +37,8 @@ public class RETC10 {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		//loginPOM = new LoginPOM(driver);
-		newBlogContactFormPOM= new BlogContactFormPOM(driver);
+		newVillasContactFormPOM= new VillasContactFormPOM(driver);
+		newlaunchsearchPOM = new NewLaunchSearchPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -50,23 +51,22 @@ public class RETC10 {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() {
-		//loginPOM.sendUserName("amalamallavarapu@gmail.com");
-		//loginPOM.sendPassword("summer@123");
-		//loginPOM.clickLoginBtn(); 
+	public void validLoginTest() throws InterruptedException {
 		
-		
-		//screenShot.captureScreenShot("MyProfile");
-		newBlogContactFormPOM.clickblog();
-		newBlogContactFormPOM.clickdropusaline();
-		newBlogContactFormPOM.sendname("manzoor");
-		newBlogContactFormPOM.sendemail("manzoor@gmail.com");
-		newBlogContactFormPOM.sendsubject("Apartments");
-		newBlogContactFormPOM.sendmessage("Looking For Apartments");
-		newBlogContactFormPOM.clicksend();
+		newVillasContactFormPOM.clickvillas();
+		newVillasContactFormPOM.sendenteraddress("Nullam hendrerit apartment");
+		newVillasContactFormPOM.selectpropertytype();
+		newVillasContactFormPOM.selectanyregion();
+		newVillasContactFormPOM.clicksearch();
+		newVillasContactFormPOM.clickdropusaline();
+		newVillasContactFormPOM.sendname("selenium");
+		newVillasContactFormPOM.sendemail("selenium@gmail.com");
+		newVillasContactFormPOM.sendsubject("apartment");
+		newVillasContactFormPOM.sendemessage("looking for apartment");
+		newVillasContactFormPOM.clicksend();
 		String Expected="Thank you for your message. It has been sent.";
-		String Actual=newBlogContactFormPOM.getcontactformsearchmsg();
-		screenShot.captureScreenShot("Search");
+		String Actual=newVillasContactFormPOM.getcontactformsearchmsg();
+		screenShot.captureScreenShot("message_display");
 		
 		System.out.println(Expected);
 		System.out.println(Actual);

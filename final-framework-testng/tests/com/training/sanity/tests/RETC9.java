@@ -60,14 +60,14 @@ public class RETC9 {
 		//screenShot.captureScreenShot("MyProfile");
 		newlaunchSearchPOM.clicknewLaunch();
 		newlaunchSearchPOM.sendenteraddress("Electronic City");
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		//newlaunchSearchPOM.sendKeys(Keys.ENTER);
 		newlaunchSearchPOM.selectpropertytype("Plots");
 		newlaunchSearchPOM.selectanyregion("Central Bangalore");
 		
 		
 		newlaunchSearchPOM.clicksearch();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		screenShot.captureScreenShot("Search");
 		
 		}
